@@ -42,6 +42,9 @@ label {
 
 .form {
     border: 1px solid #777f82;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
 }
 .form > div {
     padding: 20px;

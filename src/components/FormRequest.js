@@ -17,6 +17,7 @@ export const FormRequest = () => {
     const [responseHeaders, setResponseHeaders] = React.useState('')
     const [responseBody, setResponseBody] = React.useState('')
     const [responseError, setResponseError] = React.useState('')
+    const [responseErrorTitle, setResponseErrorTitle] = React.useState('')
 
     React.useEffect(() => {
         const test = ls.get(keyLs)
@@ -44,6 +45,7 @@ export const FormRequest = () => {
 
     const onRemoveLocalStorage = () => {
         ls.remove(keyLs)
+        setHistory([])
     }
 
     const onResetForm = () => {
@@ -53,16 +55,18 @@ export const FormRequest = () => {
     }
 
     const onSendRequest = async () => {
+        console.log(body)
         setWaiting(true)
         setResponseStatus('')
         setResponseHeaders('')
         setResponseBody('')
         setResponseError('')
+        setResponseErrorTitle('')
         try {
             const request = await axios({
                 method,
                 url,
-                data: {...body}
+                data: body
             })
             const resStatus = await request.status
             const resHeaders = await request.headers
@@ -73,13 +77,14 @@ export const FormRequest = () => {
         } catch (err) {
             console.log(err)
             setResponseError(JSON.stringify(err))
+            setResponseErrorTitle(`${err?.response?.status} ${err?.response?.statusText}`)
         }
         setWaiting(false)
     }
 
     return (
         <>
-            <div className="form flex">
+            <div className="form">
                 <div style={{flexGrow: 1, boxSizing: 'border-box', maxWidth: '60%'}}>
                     <div className="flex">
                         <div className="form-row" style={{width: '80%'}}>
@@ -89,6 +94,11 @@ export const FormRequest = () => {
                                 id="url"
                                 type="text"
                                 value={url}
+                                onKeyDown={e => {
+                                    if(e.key === 'Enter') {
+                                        onSendRequest()
+                                    }
+                                }}
                                 onChange={e => setUrl(e.target.value)}/>
                         </div>
                         <div className="form-row" style={{width: '20%'}}>
@@ -131,7 +141,7 @@ export const FormRequest = () => {
                         </div>
                         <div className="form-row" style={{marginLeft: 20}}>
                             <button disabled={!url && method === 'GET' && !body} style={{backgroundColor: '#d3d0b2'}}
-                                    onClick={onResetForm}>Очистить
+                                    onClick={onResetForm}>Reset
                             </button>
                         </div>
                         <div className="form-row" style={{marginLeft: 20}}>
@@ -168,19 +178,25 @@ export const FormRequest = () => {
                     {responseError && (
                         <div className="response">
                             <div className="form-row">
-                                <label>Ошибка!</label>
-                                {JSON.stringify(responseError)}
+                                <h4>Ошибка!</h4>
+                                <div>{responseErrorTitle}</div>
+                                &nbsp;
+                                <div>{JSON.stringify(responseError)}</div>
                             </div>
                         </div>
                     )}
                 </div>
-                <div style={{maxWidth: '40%', boxSizing: 'border-box'}}>
-                    <div className="flex" style={{alignItems: 'center', justifyContent: 'space-between', marginBottom: 20}}>
-                        <label>Сохраненные запросы</label>
-                        <button onClick={onRemoveLocalStorage}>удалить историю</button>
+                {history.length ? (
+                    <div style={{maxWidth: '40%', boxSizing: 'border-box'}}>
+                        <div className="flex" style={{alignItems: 'center', justifyContent: 'space-between', marginBottom: 20}}>
+                            <label>Сохраненные запросы</label>
+                            <button style={{transform: 'scale(0.7)'}} onClick={onRemoveLocalStorage}>удалить историю</button>
+                        </div>
+                        <HistoryList history={history} onUpdateStateConf={onSetForm}/>
                     </div>
-                    <HistoryList history={history} onUpdateStateConf={onSetForm}/>
-                </div>
+                ) : (
+                    ''
+                )}
             </div>
         </>
     )

@@ -1,38 +1,132 @@
 .App {
-  text-align: center;
+    max-width: 1800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    background-color: #555e62;
+    color: white;
+    padding: 50px;
+    box-sizing: border-box;
+    min-height: 100vh;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+input, button, textarea, select {
+    border: none;
+    padding: 10px 20px;
+    font-size: inherit;
+    font-family: inherit;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+input:disabled, button:disabled, textarea:disabled, select:disabled {
+    cursor: default;
+    opacity: .5;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+select {
+    padding: 9px 20px;
 }
 
-.App-link {
-  color: #61dafb;
+button {
+    cursor: pointer;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+button:not(:disabled):hover {
+    transform: scaleY(1.05);
+    box-shadow: 0 0 12px 2px #515151;
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+}
+
+.form {
+    border: 1px solid #777f82;
+}
+.form > div {
+    padding: 20px;
+}
+
+.form-row {
+    margin: 20px 0;
+    overflow: hidden;
+    word-wrap: break-word;
+}
+
+.response {
+    padding: 50px 0;
+}
+
+.flex {
+    display: flex;
+}
+
+.list-item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-bottom: 1px solid #ffffff;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+.list-item:hover {
+    background-color: #697479;
+}
+
+
+.lds-ellipsis {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+.lds-ellipsis div {
+    position: absolute;
+    top: 33px;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: #fff;
+    animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.lds-ellipsis div:nth-child(1) {
+    left: 8px;
+    animation: lds-ellipsis1 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(2) {
+    left: 8px;
+    animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(3) {
+    left: 32px;
+    animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(4) {
+    left: 56px;
+    animation: lds-ellipsis3 0.6s infinite;
+}
+@keyframes lds-ellipsis1 {
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+@keyframes lds-ellipsis3 {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(0);
+    }
+}
+@keyframes lds-ellipsis2 {
+    0% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(24px, 0);
+    }
 }

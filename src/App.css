@@ -21,6 +21,12 @@ input, button, textarea, select {
     font-family: inherit;
 }
 
+input::placeholder {
+    font-size: 80%;
+    font-style: italic;
+    opacity: .6;
+}
+
 input:disabled, button:disabled, textarea:disabled, select:disabled {
     cursor: default;
     opacity: .5;
@@ -50,6 +56,7 @@ label {
     display: flex;
     justify-content: space-between;
 }
+
 .form > div {
     padding: 20px;
 }
@@ -76,6 +83,7 @@ label {
     max-width: 100%;
     box-sizing: border-box;
 }
+
 .list-item:hover {
     background-color: #697479;
 }
@@ -83,15 +91,18 @@ label {
 .react-json-view {
     padding: 20px;
 }
+
 .key-modal-request > * {
     margin-top: 0 !important;
 }
+
 .lds-ellipsis {
     display: inline-block;
     position: relative;
     width: 80px;
     height: 80px;
 }
+
 .lds-ellipsis div {
     position: absolute;
     top: 33px;
@@ -101,22 +112,27 @@ label {
     background: #fff;
     animation-timing-function: cubic-bezier(0, 1, 1, 0);
 }
+
 .lds-ellipsis div:nth-child(1) {
     left: 8px;
     animation: lds-ellipsis1 0.6s infinite;
 }
+
 .lds-ellipsis div:nth-child(2) {
     left: 8px;
     animation: lds-ellipsis2 0.6s infinite;
 }
+
 .lds-ellipsis div:nth-child(3) {
     left: 32px;
     animation: lds-ellipsis2 0.6s infinite;
 }
+
 .lds-ellipsis div:nth-child(4) {
     left: 56px;
     animation: lds-ellipsis3 0.6s infinite;
 }
+
 @keyframes lds-ellipsis1 {
     0% {
         transform: scale(0);
@@ -125,6 +141,7 @@ label {
         transform: scale(1);
     }
 }
+
 @keyframes lds-ellipsis3 {
     0% {
         transform: scale(1);
@@ -133,6 +150,7 @@ label {
         transform: scale(0);
     }
 }
+
 @keyframes lds-ellipsis2 {
     0% {
         transform: translate(0, 0);
@@ -140,4 +158,35 @@ label {
     100% {
         transform: translate(24px, 0);
     }
+}
+
+
+.nav {
+    display: flex;
+    margin: 20px 0;
+    padding: 0;
+    list-style: none;
+    gap: 20px;
+}
+
+.nav > * {
+    display: flex;
+    box-sizing: border-box;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: white;
+    color: #555e62;
+    opacity: .7;
+}
+
+.nav > *:hover, .nav > *[data-active=true] {
+    opacity: 1;
+}
+
+.form-container {
+    flex-grow: 1;
+    box-sizing: border-box;
+    display: flex;
 }

@@ -88,9 +88,9 @@ export const FormRequest = () => {
             setResponseHeaders(resHeaders)
             setResponseBody(resBody)
         } catch (err) {
-            console.log(err)
-            setResponseError(JSON.stringify(err))
-            setResponseErrorTitle(`${err?.response?.status} ${err?.response?.statusText}`)
+            console.dir(err)
+            setResponseError((err).toString())
+            setResponseErrorTitle(`${err?.response?.status} ${err?.response?.statusText} ${err?.message}`)
         }
         setWaiting(false)
     }
@@ -199,13 +199,13 @@ export const FormRequest = () => {
                     </div>
                 )}
 
-                {responseError && (
+                {Boolean(responseError) && (
                     <div className="response">
                         <div className="form-row">
                             <h4>Ошибка!</h4>
-                            <div>{responseErrorTitle}</div>
+                            <div><strong style={{color: "red"}}>{responseErrorTitle}</strong></div>
                             &nbsp;
-                            <div>{JSON.stringify(responseError)}</div>
+                            <div>{responseError}</div>
                         </div>
                     </div>
                 )}

@@ -125,116 +125,54 @@
   ],
   "test": [
     {
-      "page": 1,
-      "size": 20,
-      "reportId": "vkl_2",
-      "reportName": "custom_rozn_cod3d_2",
+      "reportId": "vkl_11",
+      "reportName": "custom_rozn_cod3d_reversed.svd_cod13_bofl_11111111111",
       "id": 1
     },
     {
-      "page": 1,
-      "size": 20,
-      "reportId": "vkl_1",
-      "reportName": "custom_rozn_cod3d_1",
+      "reportId": "vkl_11",
+      "reportName": "custom_rozn_cod3d_reversed.svd_cod13_bofl_22222222222",
       "id": 2
     },
     {
-      "page": 1,
-      "size": 20,
-      "reportId": "vkl_1",
-      "reportName": "custom_rozn_cod3d_1",
+      "reportId": "vkl_11",
+      "reportName": "custom_rozn_cod3d_reversed.svd_cod13_bofl_555555555555",
       "id": 3
     },
     {
-      "page": 1,
-      "size": 20,
-      "reportId": "vkl_2",
-      "reportName": "custom_rozn_cod3d_2",
+      "reportId": "vkl_11",
+      "reportName": "custom_rozn_cod3d_reversed.svd_cod13_bofl_33333333333",
       "id": 4
     },
     {
-      "page": 1,
-      "size": 20,
-      "reportId": "vkl_1",
-      "reportName": "custom_rozn_cod3d_1",
+      "reportId": "vkl_11",
+      "reportName": "custom_rozn_cod3d_reversed.svd_cod13_bofl_444444444444",
       "id": 5
     },
     {
-      "page": 1,
-      "size": 20,
-      "reportId": "vkl_2",
-      "reportName": "custom_rozn_cod3d_2",
+      "reportId": "vkl_11",
+      "reportName": "custom_rozn_cod3d_reversed.svd_cod13_bofl_11111111111",
       "id": 6
     },
     {
-      "page": 1,
-      "size": 20,
-      "reportId": "vkl_3",
-      "reportName": "custom_rozn_cod3d_3",
+      "reportId": "vkl_11",
+      "reportName": "custom_rozn_cod3d_reversed.svd_cod13_bofl_22222222222",
       "id": 7
     },
     {
-      "page": 1,
-      "size": 20,
-      "reportId": "vkl_4",
-      "reportName": "custom_rozn_cod3d_4",
+      "reportId": "vkl_11",
+      "reportName": "custom_rozn_cod3d_reversed.svd_cod13_bofl_555555555555",
       "id": 8
     },
     {
-      "page": 1,
-      "size": 20,
-      "reportId": "vkl_2",
-      "reportName": "custom_rozn_cod3d_2",
+      "reportId": "vkl_11",
+      "reportName": "custom_rozn_cod3d_reversed.svd_cod13_bofl_33333333333",
       "id": 9
     },
     {
-      "page": 1,
-      "size": 20,
-      "reportId": "vkl_1",
-      "reportName": "custom_rozn_cod3d_1",
+      "reportId": "vkl_11",
+      "reportName": "custom_rozn_cod3d_reversed.svd_cod13_bofl_444444444444",
       "id": 10
-    },
-    {
-      "page": 1,
-      "size": 20,
-      "reportId": "vkl_4",
-      "reportName": "custom_rozn_cod3d_4",
-      "id": 11
-    },
-    {
-      "page": 1,
-      "size": 20,
-      "reportId": "vkl_3",
-      "reportName": "custom_rozn_cod3d_3",
-      "id": 12
-    },
-    {
-      "page": 1,
-      "size": 20,
-      "reportId": "vkl_1",
-      "reportName": "custom_rozn_cod3d_1",
-      "id": 13
-    },
-    {
-      "page": 1,
-      "size": 20,
-      "reportId": "vkl_4",
-      "reportName": "custom_rozn_cod3d_4",
-      "id": 14
-    },
-    {
-      "page": 1,
-      "size": 20,
-      "reportId": "vkl_2",
-      "reportName": "custom_rozn_cod3d_2",
-      "id": 15
-    },
-    {
-      "page": 1,
-      "size": 20,
-      "reportId": "vkl_3",
-      "reportName": "custom_rozn_cod3d_3",
-      "id": 16
     }
   ]
 }

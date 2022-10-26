@@ -11,7 +11,7 @@ const modeList = {
         panel: <FormRequest/>
     },
     multiple: {
-        name: 'Параллельный',
+        name: 'Параллельные запросы для НТ',
         id: 1,
         panel: <FormMultipleRequest/>
     }

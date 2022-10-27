@@ -25,9 +25,11 @@ function msToTime(s) {
 
 export const FormMultipleRequest = () => {
 
-    const [url, setUrl] = React.useState('http://localhost:3001/test')
+    const [url, setUrl] = React.useState('https://bofl.apps.ift-gen1-ds.delta.sbrf.ru/api/v1/report')
     const [method, setMethod] = React.useState('POST')
-    const [header, setHeader] = React.useState('')
+    const [header, setHeader] = React.useState(`{
+    "roles": "EFS_ERMOPS_DEPOSIT_BALANCE_STAFF"
+}`)
     const [body, setBody] = React.useState('')
     const [dataList, setDataList] = React.useState(`[
     {
@@ -50,15 +52,15 @@ export const FormMultipleRequest = () => {
 
     },
 ]`)
+    const [reportId, setReportId] = React.useState('vkl_11')
+    const [reportName, setReportName] = React.useState('custom_rozn_cod3d_reversed.svd_cod13_bofl_1666861700117')
+    const [size, setSize] = React.useState('1')
+    const [pages, setPages] = React.useState('1,2,3,4,5,6')
     const [result, setResult] = React.useState([])
-console.log(method)
+
+    console.log(method)
+
     const omFetch = async ({id, url, headers, method, data}) => {
-        console.log({
-            headers,
-            method,
-            url,
-            data
-        })
         const fetch = await axios({
             headers,
             method,
@@ -85,7 +87,6 @@ console.log(method)
 
     const onSend = async () => {
         const headers = isValidHeaders(header) ? JSON.parse(header) : {}
-        console.log(headers)
         const list = await eval(dataList).map((el, idx) => {
             const id = Date.now()
             return ({
@@ -134,14 +135,14 @@ console.log(method)
                 <h2>Общая настройка для запросов</h2>
                 <div className="row">
                     <div className="formElement" style={{width: '50%'}}>
-                        <label htmlFor="url">Адрес</label>
+                        <label htmlFor="url">Url</label>
                         <input
                             id="url"
                             value={url}
                             onChange={e => setUrl(e.target.value)}/>
                     </div>
                     <div className="formElement">
-                        <label htmlFor="method">Метод</label>
+                        <label htmlFor="method">Method</label>
                         <select
                             id="method"
                             value={method}
@@ -152,25 +153,42 @@ console.log(method)
                 </div>
                 <div className="row">
                     <div className="formElement" style={{width: '50%'}}>
+                        <label htmlFor="reportName">reportName</label>
+                        <input
+                            id="reportName"
+                            value={reportName}
+                            onChange={e => setReportName(e.target.value)}/>
+                    </div>
+                    <div className="formElement">
+                        <label htmlFor="reportId">reportId</label>
+                        <input
+                            id="reportId"
+                            value={reportId}
+                            onChange={e => setReportId(e.target.value)}/>
+                    </div>
+                    <div className="formElement">
+                        <label htmlFor="size">size</label>
+                        <input
+                            id="size"
+                            value={size}
+                            onChange={e => setSize(e.target.value)}/>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="formElement" style={{width: '50%'}}>
                         <label htmlFor="headers">Headers</label>
                         <textarea
+                            style={{minHeight: 41.6, height: 41.6}}
                             id="headers"
                             value={header}
                             onChange={e => setHeader(e.target.value)} placeholder={'headers: {}'}/>
                     </div>
                     <div className="formElement" style={{width: '50%'}}>
-                        <label htmlFor="body">Body <small>Формируется из списка "ИМПОРТ"</small></label>
-                        <textarea
-                            disabled={true}
-                            id="body"
-                            value={body}
-                            onChange={e => setBody(e.target.value)} placeholder={`Example:
-{
-    "page": 1,
-    "size": 20,
-    "reportId": [ идентификатор отчета],
-    "reportName": [ имя таблицы в hadoop]
-}`}/>
+                        <label htmlFor="pages">pages</label>
+                        <input
+                            id="pages"
+                            value={pages}
+                            onChange={e => setPages(e.target.value)}/>
                     </div>
                 </div>
             </div>

@@ -32,29 +32,23 @@ export const FormMultipleRequest = () => {
     const [dataList, setDataList] = React.useState(`[
     {
         reportId: "vkl_11",
-        reportName: "custom_rozn_cod3d_reversed.svd_cod13_bofl_11111111111"
+        reportName: "custom_rozn_cod3d_reversed.svd_cod13"
+    },{
+        reportId: "vkl_11",
+        reportName: "custom_rozn_cod3d_reversed.svd_cod13"
+    },{
+        reportId: "vkl_11",
+        reportName: "custom_rozn_cod3d_reversed.svd_cod13"
+
+    },{
+        reportId: "vkl_11",
+        reportName: "custom_rozn_cod3d_reversed.svd_cod13"
+
+    },{
+        reportId: "vkl_11",
+        reportName: "custom_rozn_cod3d_reversed.svd_cod13"
 
     },
-    {
-        reportId: "vkl_11",
-        reportName: "custom_rozn_cod3d_reversed.svd_cod13_bofl_22222222222"
-
-    },
-    {
-        reportId: "vkl_11",
-        reportName: "custom_rozn_cod3d_reversed.svd_cod13_bofl_33333333333"
-
-    },
-    {
-        reportId: "vkl_11",
-        reportName: "custom_rozn_cod3d_reversed.svd_cod13_bofl_444444444444"
-
-    },
-    {
-        reportId: "vkl_11",
-        reportName: "custom_rozn_cod3d_reversed.svd_cod13_bofl_555555555555"
-
-    }
 ]`)
     const [result, setResult] = React.useState([])
 console.log(method)

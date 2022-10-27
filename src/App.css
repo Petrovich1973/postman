@@ -3,7 +3,7 @@
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    background-color: #555e62;
+    background-color: #babfc2;
     color: white;
     padding: 50px;
     box-sizing: border-box;
@@ -193,7 +193,16 @@ label {
 
 .postmanScreen textarea {
     background-color: white;
-    color: #697479;
+    color: #343434;
+    height: 44px;
+    width: 100%;
+}
+
+.postmanScreen input {
+    background-color: white;
+    color: #343434;
+    height: 44px;
+    width: 100%;
 }
 .postmanScreen * {
     box-sizing: border-box;
@@ -220,7 +229,7 @@ label {
     width: 40%;
 }
 .postmanScreen .settingsBody h3 {
-    margin-bottom: 0;
+    margin-bottom: 37px;
 }
 .postmanScreen .row {
     display: flex;
@@ -246,8 +255,10 @@ label {
 table.response {
     border-collapse: collapse;
     padding: 0;
+    background-color: white;
+    color: black;
 }
 table.response th, table.response td {
-    border: 1px solid black;
-    padding: 1rem 2rem;
+    border: 1px solid #cacaca;
+    padding: 6px 10px;
 }

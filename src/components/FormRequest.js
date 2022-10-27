@@ -88,7 +88,7 @@ export const FormRequest = () => {
             setResponseHeaders(resHeaders)
             setResponseBody(resBody)
         } catch (err) {
-            console.dir(err)
+            console.error(err)
             setResponseError((err).toString())
             setResponseErrorTitle(`${err?.response?.status} ${err?.response?.statusText} ${err?.message}`)
         }

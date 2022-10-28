@@ -43,7 +43,7 @@ export const FormMultipleRequest = () => {
                 headers,
                 method,
                 url,
-                data
+                data: {...data, reportId, reportName}
             })
             const resultResponse = await fetch.data
             writeResult({...element, data: {...resultResponse}})

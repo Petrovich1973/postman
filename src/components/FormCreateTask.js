@@ -35,7 +35,7 @@ export const FormCreateTask = () => {
     const [numberOfCreatedTasks, setNumberOfCreatedTasks] = React.useState('10')
     const [result, setResult] = React.useState([])
     const [filter, setFilter] = React.useState(`{
-    "idMega": {
+    "ID_MEGA": {
         "attributeName": "ID_MEGA",
         "attributeType": "decimal(9,0)",
         "operation": "=",

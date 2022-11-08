@@ -47,7 +47,7 @@ export const FormMultipleRequest = () => {
             })
             const resultResponse = await fetch.data
             writeResult({...element, data: {...resultResponse}})
-            if(resultResponse && resultResponse?.status < 2) omFetch({...element, data: {...resultResponse}})
+            if(resultResponse && resultResponse?.status !== 2) omFetch({...element, data: {...resultResponse}})
         } catch (err) {
             writeResult({...element, error: err?.message})
         }
@@ -79,7 +79,7 @@ export const FormMultipleRequest = () => {
                 url,
                 method,
                 headers,
-                data: {page, size: sizeNumber, reportId, reportName, status: 0},
+                data: {page, size: sizeNumber, reportId, reportName, status: 1},
                 requestCount: 0,
                 timeStart: id,
                 timeEnd: null,

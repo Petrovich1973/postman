@@ -1,27 +1,9 @@
 import React from 'react'
 import axios from "axios"
 import moment from "moment"
+import {optionsMethod, msToTime} from '../utils'
 
 const keyLs = 'confCreateTask'
-
-const optionsMethod = ['GET', 'POST', 'PUT', 'DELETE']
-
-function msToTime(s) {
-
-    function pad(n, z) {
-        z = z || 2
-        return ('00' + n).slice(-z)
-    }
-
-    const ms = s % 1000
-    s = (s - ms) / 1000
-    const secs = s % 60
-    s = (s - secs) / 60
-    const mins = s % 60
-    const hrs = (s - mins) / 60
-
-    return pad(hrs) + ':' + pad(mins) + ':' + pad(secs) + '.' + pad(ms, 3)
-}
 
 export const FormCreateTask = () => {
 

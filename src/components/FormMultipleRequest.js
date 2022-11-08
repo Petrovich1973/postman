@@ -47,7 +47,7 @@ export const FormMultipleRequest = () => {
             })
             const resultResponse = await fetch.data
             writeResult({...element, data: {...resultResponse}})
-            if(resultResponse && resultResponse?.status !== 2) omFetch({...element, data: {...resultResponse}})
+            if(resultResponse && resultResponse?.status === 1) omFetch({...element, data: {...resultResponse}})
         } catch (err) {
             writeResult({...element, error: err?.message})
         }
@@ -61,7 +61,7 @@ export const FormMultipleRequest = () => {
                 ...element,
                 requestCount: el.requestCount + 1,
                 timeEnd: timeNow,
-                leadTime: element.data.status > 0 ? msToTime(timeNow - el.timeStart) : null,
+                leadTime: msToTime(timeNow - el.timeStart)
 
             })
         }

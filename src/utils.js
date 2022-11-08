@@ -16,3 +16,5 @@ export function msToTime(s) {
 
     return pad(hrs) + ':' + pad(mins) + ':' + pad(secs) + '.' + pad(ms, 3)
 }
+
+export const dir = ["asc", "desc"]

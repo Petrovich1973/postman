@@ -1,7 +1,8 @@
 import React from 'react'
 import axios from "axios"
 import moment from "moment"
-import {optionsMethod, msToTime} from '../utils'
+import _ from 'lodash'
+import {optionsMethod, msToTime, dir} from '../utils'
 
 const keyLs = 'confCreateTask'
 
@@ -9,6 +10,8 @@ export const FormCreateTask = () => {
 
     const [url, setUrl] = React.useState('https://bofl.apps.ift-gen1-ds.delta.sbrf.ru/api/v1/task')
     const [method, setMethod] = React.useState('POST')
+    const [sortBy, setSortBy] = React.useState('timeStart')
+    const [sortDir, setSortDir] = React.useState('asc')
     const [header, setHeader] = React.useState(`{
     "roles": "EFS_ERMOPS_DEPOSIT_BALANCE_STAFF",
     "author": "TWFrbGlzaGluYQ=="
@@ -93,8 +96,6 @@ export const FormCreateTask = () => {
         <div className={'postmanScreen'}>
             <div>
                 <div className={'settingsAll'}>
-                    <h2>Общая настройка для запросов</h2>
-
                     <div className="row">
                         <div className="formElement" style={{width: '70%', flexShrink: 0}}>
                             <label htmlFor="url">url</label>
@@ -170,14 +171,18 @@ export const FormCreateTask = () => {
                                     <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>timeStart</th>
-                                        <th>timeEnd</th>
-                                        <th>leadTime</th>
-                                        <th>error</th>
+                                        {["timeStart", "timeEnd", "leadTime", "error"]
+                                            .map((th, i) => (
+                                                <th key={i} onClick={() => {
+                                                    if (sortBy !== th) setSortDir("asc")
+                                                    else setSortDir(dir.filter(f => f !== sortDir)[0])
+                                                    setSortBy(th)
+                                                }}>{th}</th>
+                                            ))}
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    {result.sort((a, b) => a?.timeStart - b?.timeStart).map((res, idx) => (
+                                    {_.orderBy(result, [sortBy], [sortDir]).map((res, idx) => (
                                         <tr key={idx} style={res?.error === '-' ? {backgroundColor: "#539c53", color: "white"} : res?.error ? {backgroundColor: "#c23c3c", color: "white"} :{}}>
                                             <td>{idx + 1}</td>
                                             <td>{res?.timeStart ? moment(res?.timeStart).format('HH:mm:ss:SSS') : '---'}</td>

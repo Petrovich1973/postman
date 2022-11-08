@@ -37,7 +37,7 @@ function App() {
 
   return (
     <div className="App">
-        <h1>POSTMAN</h1>
+        <h1>POSTMAN v2.0</h1>
         <ul className="nav">
             {Object.keys(modeList).map(key => {
                 const isActive = modeCurrent === key

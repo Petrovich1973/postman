@@ -176,13 +176,14 @@ label {
     align-items: center;
     padding: 10px 20px;
     cursor: pointer;
-    background-color: white;
-    color: #555e62;
+    background-color: #313537;
+    color: #9da8ae;
     opacity: .7;
 }
 
 .nav > *:hover, .nav > *[data-active=true] {
     opacity: 1;
+    color: white;
 }
 
 .form-container {

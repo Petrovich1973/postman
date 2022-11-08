@@ -3,6 +3,7 @@ import './App.css';
 import {FormRequest} from "./components/FormRequest"
 import {FormMultipleRequest} from "./components/FormMultipleRequest"
 import ls from "local-storage"
+import {FormCreateTask} from "./components/FormCreateTask";
 
 const modeList = {
     single: {
@@ -11,9 +12,14 @@ const modeList = {
         panel: <FormRequest/>
     },
     multiple: {
-        name: 'Параллельные запросы для НТ',
+        name: 'Параллельное получение отчетов',
         id: 1,
         panel: <FormMultipleRequest/>
+    },
+    create: {
+        name: 'Параллельное создание задач',
+        id: 1,
+        panel: <FormCreateTask/>
     }
 }
 

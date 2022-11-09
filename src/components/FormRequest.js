@@ -160,17 +160,17 @@ export const FormRequest = () => {
 
                 <div className="flex">
                     <div className="form-row">
-                        <button disabled={!url || waiting} onClick={onSendRequest}>Отправить запрос</button>
+                        <button disabled={!url || waiting} onClick={onSendRequest}>SEND</button>
                     </div>
                     <div className="form-row" style={{marginLeft: 20}}>
                         <button disabled={!url && method === 'GET' && isEmpty(body)}
                                 style={{backgroundColor: '#d3d0b2'}}
-                                onClick={onResetForm}>Reset
+                                onClick={onResetForm}>RESET
                         </button>
                     </div>
                     <div className="form-row" style={{marginLeft: 20}}>
                         <button disabled={!url} style={{backgroundColor: '#b2d3cc'}}
-                                onClick={onUpdateLocalStorage}>Сохранить
+                                onClick={onUpdateLocalStorage}>SAVE
                         </button>
                     </div>
                 </div>

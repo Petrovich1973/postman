@@ -2,25 +2,86 @@ import React from 'react'
 import axios from "axios"
 import moment from "moment"
 import _ from "lodash"
+import ls from "local-storage"
 import {optionsMethod, msToTime, dir} from '../utils'
-import ls from "local-storage";
 
 const keyLs = 'confMultipleRequest'
 
-export const FormMultipleRequest = () => {
+const defaultStatus = {
+    url: 'https://bofl.apps.ift-gen1-ds.delta.sbrf.ru/api/v1/report',
+    method: 'POST',
+    header: `{
+    "roles": "EFS_ERMOPS_DEPOSIT_BALANCE_STAFF"
+}`,
+    reportId: 'vkl_11',
+    reportName: 'custom_rozn_cod3d_reversed.svd_cod13_bofl_1666861700117',
+    size: '1',
+    pages: '1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100',
+}
 
-    const [url, setUrl] = React.useState('https://bofl.apps.ift-gen1-ds.delta.sbrf.ru/api/v1/report')
-    const [method, setMethod] = React.useState('POST')
+export const FormGetReports = () => {
+
+    const [url, setUrl] = React.useState(defaultStatus.url)
+    const [method, setMethod] = React.useState(defaultStatus.method)
     const [sortBy, setSortBy] = React.useState('timeStart')
     const [sortDir, setSortDir] = React.useState('asc')
-    const [header, setHeader] = React.useState(`{
-    "roles": "EFS_ERMOPS_DEPOSIT_BALANCE_STAFF"
-}`)
-    const [reportId, setReportId] = React.useState('vkl_11')
-    const [reportName, setReportName] = React.useState('custom_rozn_cod3d_reversed.svd_cod13_bofl_1666861700117')
-    const [size, setSize] = React.useState('1')
-    const [pages, setPages] = React.useState('1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100')
+    const [header, setHeader] = React.useState(defaultStatus.header)
+    const [reportId, setReportId] = React.useState(defaultStatus.reportId)
+    const [reportName, setReportName] = React.useState(defaultStatus.reportName)
+    const [size, setSize] = React.useState(defaultStatus.size)
+    const [pages, setPages] = React.useState(defaultStatus.pages)
     const [result, setResult] = React.useState([])
+
+    React.useEffect(() => {
+        const data = ls.get(keyLs)
+        if (data) {
+            setUrl(data.url)
+            setMethod(data.method)
+            setHeader(data.header)
+            setReportId(data.reportId)
+            setReportName(data.reportName)
+            setSize(data.size)
+            setPages(data.pages)
+        } else {
+            ls.set(keyLs, {
+                url,
+                method,
+                header,
+                reportId,
+                reportName,
+                size,
+                pages
+            })
+        }
+    }, [])
+
+    React.useEffect(() => {
+        ls.set(keyLs, {
+            url,
+            method,
+            header,
+            reportId,
+            reportName,
+            size,
+            pages
+        })
+    }, [url,
+        method,
+        header,
+        reportId,
+        reportName,
+        size,
+        pages])
+
+    const onReset = () => {
+        setUrl(defaultStatus.url)
+        setMethod(defaultStatus.method)
+        setHeader(defaultStatus.header)
+        setReportId(defaultStatus.reportId)
+        setReportName(defaultStatus.reportName)
+        setSize(defaultStatus.size)
+        setPages(defaultStatus.pages)
+    }
 
     const omFetch = async (element) => {
         const {url, headers, method, data} = element
@@ -123,6 +184,7 @@ export const FormMultipleRequest = () => {
                         <div className="formElement">
                             <label htmlFor="method">method</label>
                             <select
+                                style={{width: '100%'}}
                                 id="method"
                                 value={method}
                                 onChange={e => setMethod(e.target.value)}>
@@ -147,15 +209,17 @@ export const FormMultipleRequest = () => {
                         </div>
                     </div>
                     <div className="row">
-                        <div className="formElement" style={{width: '70%', flexShrink: 0}}>
+                        <div className="formElement" style={{width: '100%', flexShrink: 0}}>
                             <label htmlFor="headers">headers</label>
                             <textarea
-                                style={{minHeight: 44, height: 44}}
+                                style={{minHeight: 44, height: 100}}
                                 id="headers"
                                 value={header}
                                 onChange={e => setHeader(e.target.value)} placeholder={'headers: {}'}/>
                         </div>
-                        <div className="formElement">
+                    </div>
+                    <div className="row">
+                        <div className="formElement" style={{width: '70%', flexShrink: 0}}>
                             <label htmlFor="pages">pages</label>
                             <input
                                 id="pages"
@@ -179,51 +243,50 @@ export const FormMultipleRequest = () => {
                     </div>
                     <div className="row">
                         <button onClick={onSend}>SEND</button>
+                        <button style={{backgroundColor: '#d3d0b2'}} onClick={onReset}>RESET SETTING</button>
                     </div>
                 </div>
                 <div className="settingsBody">
-                    <div style={{marginBottom: 37}}>
-                        <h3>Результат {Boolean(result.length && !result.some(s => s.data.status !== 2)) &&
-                            <span style={{color: "green"}}>Все запросы выполнены успешно!</span>}</h3>
+                    <h3>Результат {Boolean(result.length && !result.some(s => s.data.status !== 2)) &&
+                        <span style={{color: "green"}}>Все запросы выполнены успешно!</span>}</h3>
 
-                        {result.length ? (
-                            <div>
-                                <table className="response">
-                                    <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        {["status", "timeStart", "reqCount", "timeEnd", "leadTime", "error"]
-                                            .map((th, i) => (
-                                                <th key={i} onClick={() => {
-                                                    if (sortBy !== th) setSortDir("asc")
-                                                    else setSortDir(dir.filter(f => f !== sortDir)[0])
-                                                    setSortBy(th)
-                                                }}>{th}</th>
-                                            ))}
+                    {result.length ? (
+                        <div>
+                            <table className="response">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    {["status", "timeStart", "reqCount", "timeEnd", "leadTime", "error"]
+                                        .map((th, i) => (
+                                            <th key={i} onClick={() => {
+                                                if (sortBy !== th) setSortDir("asc")
+                                                else setSortDir(dir.filter(f => f !== sortDir)[0])
+                                                setSortBy(th)
+                                            }}>{th}</th>
+                                        ))}
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {_.orderBy(result, [sortBy], [sortDir]).map((res, idx) => (
+                                    <tr key={idx} style={res?.data.status === 2 ? {
+                                        backgroundColor: "#539c53",
+                                        color: "white"
+                                    } : res?.error ? {backgroundColor: "#c23c3c", color: "white"} : {}}>
+                                        <td>{idx + 1}</td>
+                                        <td>{res?.data.status}</td>
+                                        <td>{res?.timeStart ? moment(res?.timeStart).format('HH:mm:ss:SSS') : '---'}</td>
+                                        <td>{res?.requestCount}</td>
+                                        <td>{res?.timeEnd ? moment(res?.timeEnd).format('HH:mm:ss:SSS') : '---'}</td>
+                                        <td>{res?.leadTime ? res?.leadTime : 'waiting...'}</td>
+                                        <td>{res?.error}</td>
                                     </tr>
-                                    </thead>
-                                    <tbody>
-                                    {_.orderBy(result, [sortBy], [sortDir]).map((res, idx) => (
-                                        <tr key={idx} style={res?.data.status === 2 ? {
-                                            backgroundColor: "#539c53",
-                                            color: "white"
-                                        } : res?.error ? {backgroundColor: "#c23c3c", color: "white"} : {}}>
-                                            <td>{idx + 1}</td>
-                                            <td>{res?.data.status}</td>
-                                            <td>{res?.timeStart ? moment(res?.timeStart).format('HH:mm:ss:SSS') : '---'}</td>
-                                            <td>{res?.requestCount}</td>
-                                            <td>{res?.timeEnd ? moment(res?.timeEnd).format('HH:mm:ss:SSS') : '---'}</td>
-                                            <td>{res?.leadTime ? res?.leadTime : 'waiting...'}</td>
-                                            <td>{res?.error}</td>
-                                        </tr>
-                                    ))}
-                                    </tbody>
-                                </table>
-                            </div>
-                        ) : (
-                            <div> - </div>
-                        )}
-                    </div>
+                                ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    ) : (
+                        <div> - </div>
+                    )}
                 </div>
             </div>
         </div>

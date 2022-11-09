@@ -1,9 +1,9 @@
 import React from 'react'
 import './App.css';
 import {FormRequest} from "./components/FormRequest"
-import {FormMultipleRequest} from "./components/FormMultipleRequest"
+import {FormGetReports} from "./components/FormGetReports"
 import ls from "local-storage"
-import {FormCreateTask} from "./components/FormCreateTask";
+import {FormCreateTask} from "./components/FormCreateTask"
 
 const modeList = {
     single: {
@@ -11,16 +11,16 @@ const modeList = {
         id: 0,
         panel: <FormRequest/>
     },
-    multiple: {
-        name: 'Параллельное получение отчетов',
-        id: 1,
-        panel: <FormMultipleRequest/>
-    },
     create: {
-        name: 'Параллельное создание задач',
+        name: 'Создание задач',
         id: 1,
         panel: <FormCreateTask/>
-    }
+    },
+    multiple: {
+        name: 'Получение отчетов',
+        id: 1,
+        panel: <FormGetReports/>
+    },
 }
 
 const keyLs = 'confNavigation'
